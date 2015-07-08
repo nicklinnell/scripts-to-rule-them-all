@@ -7,9 +7,14 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-. script/commands
+. script/commands "$@"
 
-echo "==> Installing gem dependencies…"
-$cmdprefix bundle check --path vendor/gems 2>&1 > /dev/null || {
-  $cmdprefix bundle install --path vendor/gems --quiet --without production
-}
+if [ -n "$1" ] && [ "$1" == "docker" ]; then
+  echo "==> Building docker image…"
+  docker-compose build
+else
+  echo "==> Installing gem dependencies…"
+  $cmdprefix bundle check --path vendor/gems 2>&1 > /dev/null || {
+    $cmdprefix bundle install --path vendor/gems --quiet --without production
+  }
+fi

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -n "$1" && "$1" == "docker" || -n "$2" && "$2" == "docker" ]; then
+if [ -n "$1" ] && [ "$1" == "docker" ]; then
   cmdprefix="docker-compose run --rm web"
   rake_cmd="$cmdprefix rake"
   rails_cmd="$cmdprefix rails"
