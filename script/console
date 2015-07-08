@@ -23,6 +23,7 @@ if [ -n "$1" ]; then
 else
   # no argument provided, so just run the local console in the development
   # environment. Ensure the application is up to date first.
+  . script/commands
   script/update
-  bin/rails console
+  $rails_cmd console
 fi

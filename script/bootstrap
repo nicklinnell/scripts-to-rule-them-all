@@ -7,7 +7,9 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+. script/commands
+
 echo "==> Installing gem dependencies…"
-bundle check --path vendor/gems 2>&1 > /dev/null || {
-  bundle install --path vendor/gems --quiet --without production
+$cmdprefix bundle check --path vendor/gems 2>&1 > /dev/null || {
+  $cmdprefix bundle install --path vendor/gems --quiet --without production
 }

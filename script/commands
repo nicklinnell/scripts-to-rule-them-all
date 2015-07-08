@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ -n "$1" && "$1" == "docker" || -n "$2" && "$2" == "docker" ]; then
+  cmdprefix="docker-compose run --rm web"
+  rake_cmd="$cmdprefix rake"
+  rails_cmd="$cmdprefix rails"
+else
+  cmdprefix=""
+  rake_cmd="bin/rake"
+  rails_cmd="bin/rails"
+fi
+

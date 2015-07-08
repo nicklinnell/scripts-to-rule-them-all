@@ -30,9 +30,11 @@ fi
 
 echo "===> Running tests..."
 
+. script/commands
+
 if [ -n "$1" ]; then
   # pass arguments to test call. This is useful for calling a single test.
-  bin/rake test "$1"
+  $rake_cmd test "$1"
 else
-  bin/rake test
+  $rake_cmd test
 fi
